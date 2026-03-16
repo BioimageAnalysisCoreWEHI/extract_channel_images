@@ -41,6 +41,16 @@ nextflow run main.nf \
 	--outdir /path/to/output
 ```
 
+Run on HPC with Singularity:
+
+```bash
+nextflow run main.nf \
+	-profile singularity,medium \
+	--input_dir /path/to/images \
+	--marker_mapping /path/to/marker_mapping.json \
+	--outdir /path/to/output
+```
+
 Run for very large images on SLURM (combine runtime + resource profiles):
 
 ```bash
