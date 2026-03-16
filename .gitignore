@@ -1,0 +1,28 @@
+# Nextflow runtime
+.nextflow*
+work/
+.nf-test/
+
+# Pipeline outputs
+results/
+tests/results/
+
+# Logs and reports
+*.log
+*.trace
+*.html
+*.txt
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

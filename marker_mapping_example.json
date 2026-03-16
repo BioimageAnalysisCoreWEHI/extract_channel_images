@@ -1,0 +1,9 @@
+{
+    "DAPI_AF": "DAPI",
+    "mCherry_S1 - TRITC_AF": "mCherry",
+    "CD19_S1 - Cy5_AF": "CD19",
+    "Ki67_S2 - TRITC_AF": "KI67",
+    "CD3_S2 - Cy5_AF": "CD3",
+    "CD45_S3 - TRITC_AF": "CD45",
+    "CD103_S3 - Cy5_AF": "CD103"
+}
