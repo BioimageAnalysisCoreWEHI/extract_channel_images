@@ -1,7 +1,7 @@
 nextflow.enable.dsl = 2
 
 params.input_dir = null
-params.pattern = '*.{tif,tiff,ome.tif,ome.tiff,qptiff,qptif}'
+params.pattern = '*'
 params.marker_mapping = null
 params.outdir = 'results'
 params.publish_dir_mode = 'copy'
@@ -17,9 +17,7 @@ process EXTRACT_CHANNELS {
     publishDir "${params.outdir}", mode: params.publish_dir_mode
 
     input:
-    val prefix
-    path tiff
-    val marker_mapping
+    tuple val(prefix), path(tiff), val(marker_mapping)
 
     output:
     path "${prefix}"
@@ -51,7 +49,8 @@ workflow {
 
     Channel
         .fromPath("${params.input_dir}/${params.pattern}")
-        .ifEmpty { error "No TIFF files found in ${params.input_dir} with pattern '${params.pattern}'" }
+        .filter { p -> p.name.toLowerCase() ==~ /.*\.(ome\.)?(tif|tiff|qptif|qptiff)$/ }
+        .ifEmpty { error "No TIFF files found in ${params.input_dir} (pattern='${params.pattern}'). Supported extensions: .tif, .tiff, .ome.tif, .ome.tiff, .qptif, .qptiff" }
         .map { tiff ->
             def prefix = tiff.name.replaceAll(/(\.ome)?\.(tiff|tif|qptiff|qptif)$/,'')
             tuple(prefix, tiff, params.marker_mapping)

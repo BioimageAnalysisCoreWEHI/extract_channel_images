@@ -17,7 +17,7 @@ Small Nextflow pipeline for extracting individual channel images from multiplex 
 - `--input_dir` (required): Folder containing TIFF files.
 - `--marker_mapping` (optional): JSON file with `raw_channel_name -> output_channel_name`.
 - `--outdir` (optional): Output folder (default: `results`).
-- `--pattern` (optional): File glob (default: `*.{tif,tiff,ome.tif,ome.tiff,qptiff,qptif}`).
+- `--pattern` (optional): File glob applied within `input_dir` (default: `*`).
 
 ## Usage
 

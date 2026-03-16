@@ -19,7 +19,7 @@
         },
         "pattern": {
           "type": "string",
-          "default": "*.{tif,tiff,ome.tif,ome.tiff,qptiff,qptif}",
+          "default": "*",
           "description": "Glob pattern used to select TIFF files in input_dir."
         },
         "marker_mapping": {
