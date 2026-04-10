@@ -186,8 +186,17 @@ def main() -> None:
     for idx, (raw_name, out_name) in enumerate(zip(raw_names, unique_names)):
         channel_data = c_first[idx]
         out_path = args.output_dir / f"{out_name}.tiff"
+        # Always write uint16 so downstream tools (e.g. CellTune) receive a
+        # consistent dtype regardless of the source instrument.  MIBI images
+        # are stored as float32 ion counts (small non-negative integers), so
+        # the cast is lossless.  COMET images are already uint16.
+        if channel_data.dtype != np.uint16:
+            original_dtype = channel_data.dtype
+            channel_data = channel_data.astype(np.uint16)
+            print(f"[{idx:02d}] {raw_name} -> {out_path.name}  (converted {original_dtype} -> uint16)")
+        else:
+            print(f"[{idx:02d}] {raw_name} -> {out_path.name}")
         tifffile.imwrite(str(out_path), channel_data)
-        print(f"[{idx:02d}] {raw_name} -> {out_path.name}")
 
 
 if __name__ == "__main__":
