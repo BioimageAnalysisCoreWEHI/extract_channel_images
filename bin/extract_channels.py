@@ -185,7 +185,7 @@ def main() -> None:
 
     for idx, (raw_name, out_name) in enumerate(zip(raw_names, unique_names)):
         channel_data = c_first[idx]
-        out_path = args.output_dir / f"{out_name}.tiff"
+        out_path = args.output_dir / f"{out_name}.tif"
         # Always write uint16 so downstream tools (e.g. CellTune) receive a
         # consistent dtype regardless of the source instrument.  MIBI images
         # are stored as float32 ion counts (small non-negative integers), so
